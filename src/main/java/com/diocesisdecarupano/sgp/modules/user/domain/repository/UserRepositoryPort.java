@@ -1,14 +1,12 @@
-package com.diocesisdecarupano.sgp.modules.user.infrastructure.repository;
+package com.diocesisdecarupano.sgp.modules.user.domain.repository;
 
 import com.diocesisdecarupano.sgp.modules.user.infrastructure.persistence.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepositoryPort {
+    Optional<User> findById(Long id);
 
     Optional<User> findByEmail(String email);
 
@@ -18,10 +16,15 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     boolean existsByUsername(String username);
 
-    List<User> findByNameContainingIgnoreCase(String name);
+    List<User> findAll();
 
     List<User> findAllByType(byte type);
 
     List<User> findAllByState(byte state);
 
+    List<User> findByNameContaining(String name);
+
+    User save(User user);
+
+    void deleteById(Long id);
 }

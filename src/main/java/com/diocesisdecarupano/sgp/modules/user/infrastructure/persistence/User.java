@@ -1,15 +1,8 @@
 package com.diocesisdecarupano.sgp.modules.user.infrastructure.persistence;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.diocesisdecarupano.sgp.shared.infrastructure.persistence.BaseModel;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "users")
@@ -17,24 +10,41 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+@EqualsAndHashCode(callSuper = false)
+public class User extends BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition = "BIGINT UNSIGNED")
     private Long id;
 
-    private String nombres;
-    private String apellidos;
-    private String nacionalidad;
-    private String cedula;
-    private String usuario;
+    @Column(name = "nombres", nullable = false, length = 120)
+    private String name;
+
+    @Column(name = "apellidos", nullable = false, length = 120)
+    private String lastName;
+
+    @Column(name = "nacionalidad", nullable = false, length = 1)
+    private String nationality;
+
+    @Column(name = "cedula", nullable = false, length = 20)
+    private String identification;
+
+    @Column(name = "usuario", nullable = false, length = 30)
+    private String username;
+
+    @Column(name = "email", nullable = false, length = 130)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false, length = 190)
     private String password;
 
-    private String status;
-    private String tipo;
+    @Column(name = "status", nullable = false)
+    private byte state;
 
-    // Puedes agregar relaciones como roles o notificaciones si estás usando una librería para eso
+    @Column(name = "tipo", nullable = false)
+    private byte type;
+
+    // Puedes agregar relaciones como roles o notificaciones si estás usando una
+    // librería para eso
 }
