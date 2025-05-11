@@ -25,8 +25,11 @@ import com.diocesisdecarupano.sgp.modules.concept.application.usecase.GetConcept
 import com.diocesisdecarupano.sgp.modules.concept.application.usecase.PaginateConceptUseCase;
 import com.diocesisdecarupano.sgp.modules.concept.application.usecase.UpdateConceptUseCase;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/concepts")
+@Tag(name = "Concept", description = "Controller for Concept")
 public class ConceptController {
     @Autowired
     private CreateConceptUseCase createUseCase;

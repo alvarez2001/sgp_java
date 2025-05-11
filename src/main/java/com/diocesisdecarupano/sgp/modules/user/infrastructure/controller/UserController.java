@@ -4,6 +4,8 @@ import com.diocesisdecarupano.sgp.modules.user.application.dto.UserRequestDTO;
 import com.diocesisdecarupano.sgp.modules.user.application.dto.UserResponseDTO;
 import com.diocesisdecarupano.sgp.modules.user.application.usecase.*;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@Tag(name = "User", description = "Controller for User")
 public class UserController {
 
     private final CreateUserUseCase createUserUseCase;
