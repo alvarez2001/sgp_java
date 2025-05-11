@@ -1,4 +1,4 @@
-package com.diocesisdecarupano.sgp.modules.bank.infrastructure.persistence;
+package com.diocesisdecarupano.sgp.modules.bank.infrastructure.entity;
 
 import com.diocesisdecarupano.sgp.modules.bank.domain.enums.BankType;
 
@@ -30,7 +30,7 @@ public class Bank {
     private String accountNumber;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipo", nullable = false, length = 20, columnDefinition = "ENUM('Pago Movil','Transferencia')")
+    @Column(name = "tipo", nullable = false, length = 20)
     private BankType type;
 
     @Column(name = "alias", length = 100)

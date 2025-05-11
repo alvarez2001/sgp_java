@@ -28,7 +28,7 @@ public class BankRequest {
     private String bankName;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipo", nullable = false, length = 15, columnDefinition = "ENUM('Pago Movil','Transferencia')")
+    @Column(name = "tipo", nullable = false, length = 15)
     private BankType type;
 
     @Column(name = "numero", nullable = false, length = 190)

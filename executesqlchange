@@ -1,0 +1,45 @@
+-- 1) Permite temporalmente tanto los valores viejos como los nuevos
+ALTER TABLE bancos 
+  MODIFY `tipo`
+    ENUM('Pago Movil','PAGO_MOVIL','TRANSFERENCIA')
+    COLLATE utf8mb4_unicode_ci
+    NOT NULL;
+
+-- 2) Mapea los antiguos a los nuevos
+UPDATE bancos
+  SET `tipo` = 'PAGO_MOVIL'
+  WHERE `tipo` = 'Pago Movil';
+
+UPDATE bancos
+  SET `tipo` = 'TRANSFERENCIA'
+  WHERE `tipo` = 'Transferencia';
+
+-- 3) Quita los valores antiguos del ENUM
+ALTER TABLE bancos
+  MODIFY `tipo`
+    ENUM('PAGO_MOVIL','TRANSFERENCIA')
+    COLLATE utf8mb4_unicode_ci
+    NOT NULL;
+    
+-- 1) Permite temporalmente tanto los valores viejos como los nuevos
+ALTER TABLE solicitud_bancarias 
+  MODIFY `tipo`
+    ENUM('Pago Movil','PAGO_MOVIL','TRANSFERENCIA')
+    COLLATE utf8mb4_unicode_ci
+    NOT NULL;
+
+-- 2) Mapea los antiguos a los nuevos
+UPDATE solicitud_bancarias
+  SET `tipo` = 'PAGO_MOVIL'
+  WHERE `tipo` = 'Pago Movil';
+
+UPDATE solicitud_bancarias
+  SET `tipo` = 'TRANSFERENCIA'
+  WHERE `tipo` = 'Transferencia';
+
+-- 3) Quita los valores antiguos del ENUM
+ALTER TABLE solicitud_bancarias
+  MODIFY `tipo`
+    ENUM('PAGO_MOVIL','TRANSFERENCIA')
+    COLLATE utf8mb4_unicode_ci
+    NOT NULL;
