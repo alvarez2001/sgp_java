@@ -1,4 +1,6 @@
-package com.diocesisdecarupano.sgp.modules.concept.infrastructure.persistence;
+package com.diocesisdecarupano.sgp.modules.concept.infrastructure.entity;
+
+import com.diocesisdecarupano.sgp.modules.concept.domain.enums.RequestCodeEnum;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,9 +21,7 @@ public class Concept {
     @Column(name = "descripcion", nullable = false, length = 255, unique = true)
     private String description;
 
-    /**
-     * Solicitud code (2 characters)
-     */
+    @Enumerated(EnumType.STRING)
     @Column(name = "solicitud", nullable = false, length = 2)
-    private String requestCode;
+    private RequestCodeEnum requestCode;
 }

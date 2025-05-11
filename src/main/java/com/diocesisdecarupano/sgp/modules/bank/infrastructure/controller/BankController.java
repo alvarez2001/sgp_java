@@ -26,8 +26,11 @@ import com.diocesisdecarupano.sgp.modules.bank.application.usecase.GetBankUseCas
 import com.diocesisdecarupano.sgp.modules.bank.application.usecase.PaginateBankUseCase;
 import com.diocesisdecarupano.sgp.modules.bank.application.usecase.UpdateBankUseCase;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/banks")
+@Tag(name = "Bank", description = "Controller for Bank")
 public class BankController {
     @Autowired
     private CreateBankUseCase createUseCase;

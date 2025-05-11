@@ -43,3 +43,13 @@ ALTER TABLE solicitud_bancarias
     ENUM('PAGO_MOVIL','TRANSFERENCIA')
     COLLATE utf8mb4_unicode_ci
     NOT NULL;
+
+
+-- para ajustar el campo de solicitud en conceptos
+
+ALTER TABLE conceptos 
+  MODIFY `solicitud`
+    ENUM('SI','NO')
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci
+    NOT NULL;
