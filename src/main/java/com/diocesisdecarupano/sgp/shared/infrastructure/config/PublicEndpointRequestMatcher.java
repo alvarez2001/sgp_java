@@ -8,8 +8,6 @@ import org.springframework.web.servlet.HandlerMapping;
 
 import com.diocesisdecarupano.sgp.shared.infrastructure.anotations.Public;
 
-import java.util.Objects;
-
 public class PublicEndpointRequestMatcher implements RequestMatcher {
 
     @Override
@@ -18,7 +16,7 @@ public class PublicEndpointRequestMatcher implements RequestMatcher {
 
         if (handler instanceof HandlerMethod handlerMethod) {
             return AnnotationUtils.findAnnotation(handlerMethod.getMethod(), Public.class) != null ||
-                   AnnotationUtils.findAnnotation(handlerMethod.getBeanType(), Public.class) != null;
+                    AnnotationUtils.findAnnotation(handlerMethod.getBeanType(), Public.class) != null;
         }
 
         return false;
