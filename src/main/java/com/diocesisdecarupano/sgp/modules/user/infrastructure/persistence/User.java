@@ -30,7 +30,7 @@ public class User extends BaseModel {
     @Column(name = "cedula", nullable = false, length = 20)
     private String identification;
 
-    @Column(name = "usuario", nullable = false, length = 30)
+    @Column(name = "usuario", nullable = false, length = 30, unique = true)
     private String username;
 
     @Column(name = "email", nullable = false, length = 130)
