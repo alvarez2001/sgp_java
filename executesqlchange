@@ -53,3 +53,48 @@ ALTER TABLE conceptos
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci
     NOT NULL;
+
+
+
+------ para ajustar campos de status en proyectos
+
+-- 1) Pasa status a texto para mapear sin pérdida
+ALTER TABLE proyectos 
+  MODIFY `status` VARCHAR(10) NOT NULL;
+
+-- 2) Mapea los valores numéricos a tus nuevos estados
+UPDATE proyectos 
+SET `status` = CASE `status`
+    WHEN '0' THEN 'INACTIVE'
+    WHEN '1' THEN 'ACTIVE'
+    WHEN '2' THEN 'WAIT'
+    ELSE 'INACTIVE'  -- o el valor que quieras por defecto
+END;
+
+-- 3) Redefine status como ENUM con los nuevos valores
+ALTER TABLE proyectos 
+  MODIFY `status`
+    ENUM('INACTIVE','ACTIVE','WAIT')
+    NOT NULL;
+
+--- para ajustar campos de moneda
+
+-- 1) Normaliza los valores existentes a mayúsculas
+UPDATE proyectos 
+SET `moneda` = CASE
+    WHEN `moneda` = 'Euro'  THEN 'EURO'
+    WHEN `moneda` = 'Dolar' THEN 'DOLAR'
+    ELSE UPPER(`moneda`)     -- opcional, para otros valores
+END;
+
+-- 2) Asegúrate de que solo queden los valores deseados
+--    Si hay filas con otros valores, podrías revisarlas:
+SELECT DISTINCT `moneda` FROM proyectos ;
+
+-- 3) Convierte la columna a ENUM con solo los valores permitidos
+ALTER TABLE proyectos 
+  MODIFY `moneda`
+    ENUM('EURO','DOLAR')
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci
+    NOT NULL;
