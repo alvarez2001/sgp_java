@@ -1,6 +1,6 @@
 package com.diocesisdecarupano.sgp.modules.operation.infrastructure.persistence;
 
-import com.diocesisdecarupano.sgp.modules.project.infrastructure.persistence.Project;
+import com.diocesisdecarupano.sgp.modules.project.infrastructure.entity.Project;
 
 import jakarta.persistence.*;
 import lombok.*;

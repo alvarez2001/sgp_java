@@ -6,7 +6,7 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.diocesisdecarupano.sgp.modules.project.infrastructure.persistence.Project;
+import com.diocesisdecarupano.sgp.modules.project.infrastructure.entity.Project;
 import com.diocesisdecarupano.sgp.modules.request.domain.enums.ProductCurrency;
 import com.diocesisdecarupano.sgp.modules.user.infrastructure.persistence.User;
 

@@ -1,8 +1,11 @@
-package com.diocesisdecarupano.sgp.modules.project.infrastructure.persistence;
+package com.diocesisdecarupano.sgp.modules.project.infrastructure.entity;
 
 import java.math.BigDecimal;
 
+import com.diocesisdecarupano.sgp.modules.project.domain.enums.ProjectCurrency;
+import com.diocesisdecarupano.sgp.modules.project.domain.enums.ProjectStatus;
 import com.diocesisdecarupano.sgp.modules.user.infrastructure.persistence.User;
+import com.diocesisdecarupano.sgp.shared.infrastructure.persistence.BaseModel;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,7 +16,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Project {
+@EqualsAndHashCode(callSuper = false)
+public class Project extends BaseModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,11 +39,13 @@ public class Project {
     @Column(name = "comision", nullable = false, precision = 30, scale = 2)
     private BigDecimal commission;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private byte status;
+    private ProjectStatus status;
 
-    @Column(name = "moneda", nullable = false, length = 40)
-    private String currency;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "moneda", nullable = false)
+    private ProjectCurrency currency;
 
     @Column(name = "alias", length = 100)
     private String alias;
